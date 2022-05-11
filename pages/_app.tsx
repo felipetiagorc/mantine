@@ -5,7 +5,6 @@ import {
   Paper
 } from '@mantine/core';
 import { useHotkeys, useLocalStorage } from '@mantine/hooks';
-import { toggleSpotlight } from '@mantine/spotlight';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import DarkButton from '../src/components/darkButton';
@@ -34,11 +33,15 @@ export default function App(props: AppProps) {
       </Head>
       <ColorSchemeProvider
         colorScheme={colorScheme}
-        toggleColorScheme={toggleSpotlight}
+        toggleColorScheme={toggleColorScheme}
       >
         <DarkButton />
 
-        <MantineProvider withGlobalStyles withNormalizeCSS theme={colorScheme}>
+        <MantineProvider
+          withGlobalStyles
+          withNormalizeCSS
+          theme={{ colorScheme }}
+        >
           <Paper radius={0}>
             <Layout />
             <Component {...pageProps} />

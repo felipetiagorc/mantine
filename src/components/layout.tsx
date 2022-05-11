@@ -2,14 +2,18 @@ import {
   AppShell,
   Aside,
   Burger,
+  Button,
   Footer,
   Header,
   MediaQuery,
   Navbar,
+  ScrollArea,
   Text,
   useMantineTheme
 } from '@mantine/core';
+import { NextLink } from '@mantine/next';
 import React, { useState } from 'react';
+import DarkButton from './darkButton';
 
 export default function Layout() {
   const theme = useMantineTheme();
@@ -32,9 +36,35 @@ export default function Layout() {
           p='md'
           hiddenBreakpoint='sm'
           hidden={!opened}
-          width={{ sm: 200, lg: 300 }}
+          width={{ sm: 200, lg: 200 }}
         >
-          <Text>Application navbar</Text>
+          {/* Navbar  */}
+
+          <Navbar.Section mt='xs'>
+            <Text>TopNav</Text>
+          </Navbar.Section>
+
+          <Navbar.Section grow component={ScrollArea} mt='lg' mx='-xs' px='xs'>
+            <Button component={NextLink} href='/presos'>
+              Presos
+            </Button>
+
+            <Button component={NextLink} href='/presos'>
+              Advogados
+            </Button>
+            <Text>MenuItem</Text>
+            <Text>MenuItem</Text>
+            <Text>MenuItem</Text>
+            <Text>MenuItem</Text>
+            <Text>MenuItem</Text>
+            <Text>MenuItem</Text>
+          </Navbar.Section>
+
+          <Navbar.Section>
+            <Text>BotomNav</Text>
+          </Navbar.Section>
+
+          {/* Navbar  */}
         </Navbar>
       }
       aside={
@@ -52,7 +82,11 @@ export default function Layout() {
       header={
         <Header height={70} p='md'>
           <div
-            style={{ display: 'flex', alignItems: 'center', height: '100%' }}
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              height: '100%'
+            }}
           >
             <MediaQuery largerThan='sm' styles={{ display: 'none' }}>
               <Burger
@@ -65,11 +99,16 @@ export default function Layout() {
             </MediaQuery>
 
             <Text>Application header</Text>
+            <DarkButton />
           </div>
         </Header>
       }
     >
+      {/* conteudo */}
+
       <Text>Resize app to see responsive navbar in action</Text>
+
+      {/* conteudo */}
     </AppShell>
   );
 }
